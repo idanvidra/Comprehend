@@ -7,7 +7,7 @@ import json
 
 
 # Number of cuts to the text
-CUTSIZE = 6
+CUTSIZE = 12
 
 comprehend = boto3.client(service_name='comprehend', region_name='eu-west-1')
 
@@ -59,9 +59,9 @@ x = []
 for i in range(len(sentiment_array)):
     specific_sentiment = sentiment_array[i]['Sentiment']
     if specific_sentiment == 'POSITIVE':
-        x.append(float(sentiment_array[0]['SentimentScore']['Positive']))
+        x.append(float(sentiment_array[i]['SentimentScore']['Positive']))
     if specific_sentiment == 'NEGATIVE':
-        x.append(-1 * float(sentiment_array[0]['SentimentScore']['Negative']))
+        x.append(-1 * float(sentiment_array[i]['SentimentScore']['Negative']))
     else:
         x.append(0)
 
